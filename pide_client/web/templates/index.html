@@ -14,421 +14,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            min-height: 100vh;
-            scroll-behavior: smooth;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-
-        /* Elementos de fondo sutiles */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 1;
-            background-image:
-                radial-gradient(circle at 20% 80%, #2c3e50 2px, transparent 2px),
-                radial-gradient(circle at 80% 20%, #34495e 2px, transparent 2px);
-            background-size: 100px 100px;
-        }
-
-        /* Navbar institucional */
-        .navbar {
-            background: #ffffff !important;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid #3498db;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .navbar.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .navbar-brand {
-            font-weight: 600;
-            font-size: 1.4rem;
-            color: #2c3e50 !important;
-            transition: color 0.3s ease;
-        }
-
-        .navbar-brand:hover {
-            color: #3498db !important;
-        }
-
-        .navbar-brand i {
-            color: #3498db;
-            margin-right: 0.5rem;
-        }
-
-        /* Hero Section profesional */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            padding: 5rem 2rem 4rem;
-            margin-top: 76px;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.3s forwards;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Contenedor de servicios */
-        .services-section {
-            padding: 5rem 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Cards profesionales */
-        .service-card {
-            background: #ffffff;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            height: 100%;
-            opacity: 0;
-            transform: translateY(40px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #3498db, #2980b9);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card-body {
-            padding: 2.5rem;
-            text-align: center;
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .service-icon i {
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card:hover .service-icon i {
-            transform: scale(1.1);
-        }
-
-        /* Colores específicos para cada servicio */
-        .reniec .service-icon {
-            background: linear-gradient(135deg, #fee2e2, #fecaca);
-        }
-
-        .reniec .service-icon i {
-            color: #dc2626;
-        }
-
-        .sunarp .service-icon {
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-        }
-
-        .sunarp .service-icon i {
-            color: #2563eb;
-        }
-
-        .sunedu .service-icon {
-            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-        }
-
-        .sunedu .service-icon i {
-            color: #059669;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .card-text {
-            color: #7f8c8d;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
-
-        /* Botones profesionales */
-        .btn-service {
-            background: #3498db;
-            border: none;
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-service::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-service:hover::before {
-            left: 100%;
-        }
-
-        .btn-service:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-            color: white;
-        }
-
-        .btn-hero {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .btn-hero:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            color: white;
-        }
-
-        /* Estadísticas o información adicional */
-        .stats-section {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 0;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #3498db;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 3rem 1rem 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .card-body {
-                padding: 2rem 1.5rem;
-            }
-
-            .services-section {
-                padding: 3rem 0;
-            }
-        }
-
-        /* Loading suave */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .fade-in.loaded {
-            opacity: 1;
-        }
-    </style>
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
     <!-- Patrón de fondo sutil -->
     <div class="bg-pattern"></div>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-shield-check"></i>
-                Plataforma de Consultas Institucional
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#servicios">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero -->
     <section class="hero">
@@ -436,12 +28,8 @@
             <div class="hero-content">
                 <h1>Sistema de Consultas Integrado</h1>
                 <p>Acceda de forma segura y confiable a los servicios de <strong>RENIEC</strong>,
-                    <strong>SUNARP</strong> y <strong>SUNEDU</strong>. Información oficial verificada para instituciones
+                    <strong>SUNARP</strong>, <strong>SUNEDU</strong> y <strong>SUNAT</strong>. Información oficial verificada para instituciones
                     públicas y ciudadanos.</p>
-                <a href="#servicios" class="btn btn-hero">
-                    <i class="bi bi-arrow-down-circle"></i>
-                    Explorar Servicios
-                </a>
             </div>
         </div>
     </section>
@@ -456,7 +44,7 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <div class="card service-card reniec">
                         <div class="card-body">
                             <div class="service-icon">
@@ -476,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <div class="card service-card sunarp">
                         <div class="card-body">
                             <div class="service-icon">
@@ -495,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <div class="card service-card sunedu">
                         <div class="card-body">
                             <div class="service-icon">
@@ -513,6 +101,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card service-card sunat">
+                        <div class="card-body">
+                            <div class="service-icon">
+                                <i class="bi bi-building-gear"></i>
+                            </div>
+                            <h5 class="card-title">SUNAT</h5>
+                            <p class="card-text">
+                                Consulta de RUC, verificación de contribuyentes y situación tributaria.
+                                Información oficial de la Superintendencia Nacional de Aduanas y de Administración Tributaria.
+                            </p>
+                            <a href="/sunat" class="btn btn-service">
+                                <i class="bi bi-arrow-right"></i>
+                                Acceder a SUNAT
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -521,22 +128,28 @@
     <section class="stats-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="stat-item">
                         <span class="stat-number">24/7</span>
                         <div class="stat-label">Disponibilidad del Sistema</div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="stat-item">
                         <span class="stat-number">100%</span>
                         <div class="stat-label">Información Oficial Verificada</div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="stat-item">
-                        <span class="stat-number">3</span>
+                        <span class="stat-number">4</span>
                         <div class="stat-label">Instituciones Integradas</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <span class="stat-number">RUC</span>
+                        <div class="stat-label">Consulta Tributaria</div>
                     </div>
                 </div>
             </div>
@@ -548,102 +161,8 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            // Fade in inicial
-            $('body').addClass('fade-in loaded');
-
-            // Navbar scroll effect
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('.navbar').addClass('scrolled');
-                } else {
-                    $('.navbar').removeClass('scrolled');
-                }
-            });
-
-            // Intersection Observer para animaciones
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Observar elementos
-            document.querySelectorAll('.service-card, .section-title').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Animación secuencial de las tarjetas
-            $('.service-card').each(function (index) {
-                $(this).css('transition-delay', (index * 0.2) + 's');
-            });
-
-            // Smooth scroll
-            $('a[href^="#"]').click(function (e) {
-                e.preventDefault();
-                const target = $($(this).attr('href'));
-                if (target.length) {
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - 80
-                    }, 800, 'easeInOutCubic');
-                }
-            });
-
-            // Accesibilidad: navegación por teclado
-            $('.service-card').on('keypress', function (e) {
-                if (e.which === 13) {
-                    $(this).find('.btn-service')[0].click();
-                }
-            }).attr('tabindex', '0');
-
-            // Animación de números en estadísticas
-            function animateNumbers() {
-                $('.stat-number').each(function () {
-                    const $this = $(this);
-                    const text = $this.text();
-
-                    if (text.includes('%')) {
-                        $({ counter: 0 }).animate({ counter: 100 }, {
-                            duration: 2000,
-                            step: function () {
-                                $this.text(Math.ceil(this.counter) + '%');
-                            }
-                        });
-                    }
-                });
-            }
-
-            // Activar animación de números cuando sea visible
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateNumbers();
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            });
-
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) {
-                statsObserver.observe(statsSection);
-            }
-        });
-
-        // Easing personalizado
-        $.easing.easeInOutCubic = function (x, t, b, c, d) {
-            if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
-            return c / 2 * ((t -= 2) * t * t + 2) + b;
-        };
-    </script>
+    <!-- Script personalizado -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 
 </html>

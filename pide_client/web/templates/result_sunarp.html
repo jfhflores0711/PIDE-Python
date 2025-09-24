@@ -15,12 +15,6 @@
 </head>
 <body class="container py-5">
     <h1 class="mb-4">Resultado de la consulta SUNARP</h1>
-    
-    
-    
-
-
-
 
     {% if tipo == "placa" %}
         <h3 class="mb-4">🚗 Consulta por Placa Vehicular</h3>
@@ -56,8 +50,6 @@
         {% else %}
             <div class="alert alert-warning">No se encontró información para esta placa.</div>
         {% endif %}
-        
-
 
     {% elif tipo == "oficinas" %}
         <h3 class="mb-4">🏢 Listado de Oficinas Registrales SUNARP</h3>

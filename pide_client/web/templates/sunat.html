@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta RUC - SUNAT</title>
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="sunat-page">
+    <!-- Header -->
+    <nav class="navbar navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="bi bi-building-gear fs-3 sunat-color me-2"></i>
+                <span class="fw-bold">SUNAT</span>
+            </a>
+            <a href="/" class="nav-back">
+                <i class="bi bi-arrow-left me-1"></i>Volver al inicio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Card Principal -->
+                <div class="card sunat-card mb-4">
+                    <div class="card-header sunat-bg text-white py-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-building-gear fs-2 me-3"></i>
+                            <div>
+                                <h2 class="h4 mb-1">Consulta de RUC</h2>
+                                <p class="mb-0 opacity-75">Superintendencia Nacional de Aduanas y de Administración Tributaria</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body p-4">
+                        <!-- Formulario de Consulta -->
+                        <form id="consultaRucForm">
+                            <div class="row align-items-end">
+                                <div class="col-md-8">
+                                    <label for="ruc" class="form-label fw-semibold">Número de RUC:</label>
+                                    <input type="text" 
+                                           class="form-control form-control-lg ruc-input" 
+                                           id="ruc" 
+                                           placeholder="Ingrese 11 dígitos del RUC"
+                                           maxlength="11"
+                                           pattern="[0-9]{11}"
+                                           required>
+                                    <div class="form-text">
+                                        <i class="bi bi-info-circle me-1"></i>El RUC debe contener exactamente 11 dígitos numéricos
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-sunat w-100 py-3">
+                                        <i class="bi bi-search me-2"></i>
+                                        <span class="consultar-text">Consultar RUC</span>
+                                        <div class="spinner-border spinner-border-sm loading-spinner" role="status">
+                                            <span class="visually-hidden">Cargando...</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Ejemplos de RUC -->
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <strong>Ejemplos:</strong> 
+                                <span class="ruc-ejemplo ms-2" data-ruc="20100070970">20100070970 (SUNAT)</span> | 
+                                <span class="ruc-ejemplo" data-ruc="20100035354">20100035354 (RENIEC)</span> |
+                                <span class="ruc-ejemplo" data-ruc="20100039184">20100039184 (SUNARP)</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultados -->
+                <div id="resultado" class="card sunat-card" style="display: none;">
+                    <div class="card-header bg-white py-3">
+                        <h3 class="h5 mb-0 text-success">
+                            <i class="bi bi-check-circle-fill me-2"></i>Consulta Exitosa
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-item d-flex">
+                                    <span class="info-label">RUC:</span>
+                                    <span class="info-value" id="ruc-resultado">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Razón Social:</span>
+                                    <span class="info-value" id="razon-social">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Estado:</span>
+                                    <span class="info-value" id="estado">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Condición:</span>
+                                    <span class="info-value" id="condicion">-</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Dirección:</span>
+                                    <span class="info-value" id="direccion">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Departamento:</span>
+                                    <span class="info-value" id="departamento">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Provincia:</span>
+                                    <span class="info-value" id="provincia">-</span>
+                                </div>
+                                <div class="info-item d-flex">
+                                    <span class="info-label">Distrito:</span>
+                                    <span class="info-value" id="distrito">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Información Adicional -->
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="row">
+                                <div class="col-md-4 text-center">
+                                    <span class="stat-badge">
+                                        <i class="bi bi-calendar me-1"></i>
+                                        <span id="fecha-consulta">-</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <span class="stat-badge">
+                                        <i class="bi bi-clock me-1"></i>
+                                        Tiempo de respuesta: <span id="tiempo-respuesta">-</span>s
+                                    </span>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <span class="stat-badge">
+                                        <i class="bi bi-database me-1"></i>
+                                        Fuente: SUNAT
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensaje de Error -->
+                <div id="error-message" class="alert alert-danger mt-4" style="display: none;">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <span id="error-text"></span>
+                </div>
+
+                <!-- Información de la API -->
+                <div class="card mt-4 border-0 bg-light">
+                    <div class="card-body text-center">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Esta consulta utiliza la API pública de SUNAT. La información es proporcionada oficialmente por la Superintendencia Nacional de Aduanas y de Administración Tributaria.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script personalizado -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -65,8 +65,6 @@ class SunarpClient:
         self.soap = None
 
       
-
-
     # ---------------- REST genérico ----------------
     def _rest_request(self, endpoint, payload=None, method="POST"):
         url = f"{self.BASE_URL_REST}/{endpoint}?out=json"
