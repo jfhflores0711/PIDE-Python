@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from sunarp.sunarp_client import SunarpClient, SunarpNotFound
 from reniec.client import ReniecClient
 from pide_client.sunarp.sunarp_client import SunarpClient
+from pide_client.sunat.sunat_client import SunatClient
 
 # Importa la excepción SunarpNotFound si está definida en el módulo correspondiente
 try:
@@ -150,6 +151,27 @@ def consulta_titularidad_route():
     except Exception as e:
         logger.error(f"Error en consulta SUNARP Titularidad: {e}", exc_info=True)
         return render_template("sunarp.html", error="Error al consultar SUNARP, intente nuevamente.")
+    
+
+# ===============================
+# SUNAT - Consulta de RUC
+# ===============================
+@app.route("/sunat", methods=["GET", "POST"])
+def sunat():
+    data = None
+    error = None
+
+    if request.method == "POST":
+        ruc = request.form.get("ruc", "").strip()
+        if not ruc:
+            error = "Debe ingresar un RUC"
+        else:
+            client = SunatClient()
+            data = client.consulta_ruc(ruc)
+            if not data:
+                error = "No se encontró información para ese RUC"
+
+    return render_template("sunat.html", data=data, error=error)
 
 
 # ===============================
