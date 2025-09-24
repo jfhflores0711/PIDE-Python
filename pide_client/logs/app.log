@@ -1,0 +1,87 @@
+2025-09-17 17:05:24,089 [WARNING] werkzeug:  * Debugger is active!
+2025-09-17 17:05:24,091 [INFO] werkzeug:  * Debugger PIN: 605-583-089
+2025-09-17 17:09:39,527 [INFO] werkzeug:  * Detected change in 'C:\\Users\\UDESA01\\Documents\\Proyectos Python\\pide_client\\reniec\\client.py', reloading
+2025-09-17 17:43:29,237 [INFO] web.app: Iniciando aplicación Flask en puerto 5000
+2025-09-17 17:43:29,254 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-17 17:43:29,255 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-17 17:43:29,255 [INFO] werkzeug:  * Restarting with stat
+2025-09-17 17:43:29,475 [INFO] web.app: Iniciando aplicación Flask en puerto 5000
+2025-09-17 17:43:29,488 [WARNING] werkzeug:  * Debugger is active!
+2025-09-17 17:43:29,490 [INFO] werkzeug:  * Debugger PIN: 605-583-089
+2025-09-17 17:43:35,297 [INFO] web.app: Ingreso al menú principal
+2025-09-17 17:43:35,299 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:43:35] "GET / HTTP/1.1" 200 -
+2025-09-17 17:43:36,535 [INFO] web.app: Ingreso a formulario RENIEC
+2025-09-17 17:43:36,536 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:43:36] "GET /reniec HTTP/1.1" 200 -
+2025-09-17 17:43:38,207 [INFO] web.app: Ingreso al menú principal
+2025-09-17 17:43:38,208 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:43:38] "GET / HTTP/1.1" 200 -
+2025-09-17 17:43:38,872 [INFO] web.app: Ingreso a formulario SUNARP
+2025-09-17 17:43:38,875 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:43:38] "GET /sunarp HTTP/1.1" 200 -
+2025-09-17 17:44:07,987 [INFO] sunarp.client: SUNARP - llamada exitosa al endpoint GOficina
+2025-09-17 17:44:07,994 [INFO] web.app: Consulta SUNARP exitosa - Listado de oficinas
+2025-09-17 17:44:08,022 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:44:08] "GET /sunarp/oficinas HTTP/1.1" 200 -
+2025-09-17 17:49:22,271 [INFO] web.app: Ingreso al menú principal
+2025-09-17 17:49:22,272 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:49:22] "GET / HTTP/1.1" 200 -
+2025-09-17 17:53:56,405 [INFO] web.app: Ingreso a formulario RENIEC
+2025-09-17 17:53:56,406 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:53:56] "GET /reniec HTTP/1.1" 200 -
+2025-09-17 17:53:58,959 [INFO] web.app: Ingreso al menú principal
+2025-09-17 17:53:58,960 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:53:58] "GET / HTTP/1.1" 200 -
+2025-09-17 17:53:59,693 [INFO] web.app: Ingreso a formulario SUNARP
+2025-09-17 17:53:59,694 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:53:59] "GET /sunarp HTTP/1.1" 200 -
+2025-09-17 17:58:49,505 [INFO] sunarp.client: SUNARP - llamada exitosa al endpoint VDRPVExtra
+2025-09-17 17:58:49,507 [INFO] web.app: Consulta SUNARP exitosa - Placa: cfl523, Zona: 01, Oficina: 01
+2025-09-17 17:58:49,508 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 17:58:49] "POST /sunarp/placa HTTP/1.1" 200 -
+2025-09-17 18:05:02,070 [INFO] web.app: Ingreso al menú principal
+2025-09-17 18:05:02,071 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 18:05:02] "GET / HTTP/1.1" 200 -
+2025-09-17 18:05:03,220 [INFO] web.app: Ingreso a formulario SUNARP
+2025-09-17 18:05:03,220 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 18:05:03] "GET /sunarp HTTP/1.1" 200 -
+2025-09-17 18:09:29,500 [ERROR] sunarp.client: SUNARP - error en endpoint VDRPVExtra: 500 Server Error: Internal Server Error for url: https://ws2.pide.gob.pe/Rest/SUNARP/VDRPVExtra?out=json
+Traceback (most recent call last):
+  File "C:\Users\UDESA01\Documents\Proyectos Python\pide_client\sunarp\client.py", line 24, in _post
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\UDESA01\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ws2.pide.gob.pe/Rest/SUNARP/VDRPVExtra?out=json
+2025-09-17 18:09:29,520 [ERROR] web.app: Error en consulta SUNARP Placa cfl523: 500 Server Error: Internal Server Error for url: https://ws2.pide.gob.pe/Rest/SUNARP/VDRPVExtra?out=json
+Traceback (most recent call last):
+  File "C:\Users\UDESA01\Documents\Proyectos Python\pide_client\web\app.py", line 70, in consulta_placa
+    resp = client.consulta_placa(zona, oficina, placa)
+  File "C:\Users\UDESA01\Documents\Proyectos Python\pide_client\sunarp\client.py", line 34, in consulta_placa
+    return self._post("VDRPVExtra", {"zona": zona, "oficina": oficina, "placa": placa})
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\UDESA01\Documents\Proyectos Python\pide_client\sunarp\client.py", line 24, in _post
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\UDESA01\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ws2.pide.gob.pe/Rest/SUNARP/VDRPVExtra?out=json
+2025-09-17 18:09:29,521 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 18:09:29] "POST /sunarp/placa HTTP/1.1" 200 -
+2025-09-17 18:12:23,613 [INFO] sunarp.client: SUNARP - llamada exitosa al endpoint GOficina
+2025-09-17 18:12:23,617 [INFO] web.app: Consulta SUNARP exitosa - Listado de oficinas
+2025-09-17 18:12:23,620 [INFO] werkzeug: 127.0.0.1 - - [17/Sep/2025 18:12:23] "GET /sunarp/oficinas HTTP/1.1" 200 -
+2025-09-18 16:06:37,657 [INFO] __main__: Iniciando aplicación Flask en puerto 5000
+2025-09-18 16:06:37,680 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 16:06:37,680 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-18 16:06:37,681 [INFO] werkzeug:  * Restarting with stat
+2025-09-18 16:06:37,902 [INFO] __main__: Iniciando aplicación Flask en puerto 5000
+2025-09-18 16:06:37,912 [WARNING] werkzeug:  * Debugger is active!
+2025-09-18 16:06:37,914 [INFO] werkzeug:  * Debugger PIN: 209-925-715
+2025-09-18 16:07:31,223 [INFO] __main__: Iniciando aplicación Flask en puerto 5000
+2025-09-18 16:07:31,240 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 16:07:31,240 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2025-09-18 16:07:31,241 [INFO] werkzeug:  * Restarting with stat
+2025-09-18 16:07:31,461 [INFO] __main__: Iniciando aplicación Flask en puerto 5000
+2025-09-18 16:07:31,471 [WARNING] werkzeug:  * Debugger is active!
+2025-09-18 16:07:31,473 [INFO] werkzeug:  * Debugger PIN: 209-925-715
+2025-09-18 16:11:01,417 [INFO] __main__: Ingreso al menú principal
+2025-09-18 16:11:01,423 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:01] "GET / HTTP/1.1" 200 -
+2025-09-18 16:11:02,518 [INFO] __main__: Ingreso a formulario SUNARP
+2025-09-18 16:11:02,520 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:02] "GET /sunarp HTTP/1.1" 200 -
+2025-09-18 16:11:11,756 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:11] "[35m[1mGET /sunarp/oficinas HTTP/1.1[0m" 500 -
+2025-09-18 16:11:11,800 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:11] "GET /sunarp/oficinas?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-09-18 16:11:12,111 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:12] "GET /sunarp/oficinas?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-09-18 16:11:12,459 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:12] "GET /sunarp/oficinas?__debugger__=yes&cmd=resource&f=console.png&s=psrbujqq2yloqurcqGTH HTTP/1.1" 200 -
+2025-09-18 16:11:12,687 [INFO] werkzeug: 127.0.0.1 - - [18/Sep/2025 16:11:12] "GET /sunarp/oficinas?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
